@@ -37,6 +37,13 @@ uvicorn app.main:app --reload
 
 ## Bug tickets
 
+**You are not expected to fix everything in an hour.** Work through the three
+**core tickets** first — in whatever order you think is right. The two
+**stretch tickets** are bonus if time remains. How you prioritize and how you
+investigate matter as much as how many you fix.
+
+### Core tickets
+
 ### BUG-101 — First products missing from the catalog (P2)
 
 > Customers report the first products in the catalog never appear on page 1 of
@@ -45,6 +52,24 @@ uvicorn app.main:app --reload
 > 1-indexed.
 
 Failing tests: `tests/test_01_products.py`
+
+### BUG-103 — Checkout crashes with any coupon code (P1)
+
+> Marketing launched the `WELCOME10` coupon this morning. Every checkout that
+> includes a coupon code — valid or expired — returns **500 Internal Server
+> Error**. Coupons worked in the old PHP system.
+
+Failing tests: `tests/test_03_coupons.py`
+
+### BUG-105 — Flash-sale item oversold, stock went negative (P0)
+
+> During the deskmat flash sale we had 3 units in stock but confirmed **5
+> orders**, and the inventory dashboard showed negative stock. Only happens
+> under load — single requests behave correctly.
+
+Failing test: `tests/test_04_inventory.py::test_concurrent_orders_do_not_oversell`
+
+### Stretch tickets (only if time remains)
 
 ### BUG-102 — Valid orders rejected after someone submits a bad one (P1)
 
@@ -56,14 +81,6 @@ Failing tests: `tests/test_01_products.py`
 
 Failing test: `tests/test_05_validation.py::test_valid_order_succeeds_after_an_invalid_one`
 
-### BUG-103 — Checkout crashes with any coupon code (P1)
-
-> Marketing launched the `WELCOME10` coupon this morning. Every checkout that
-> includes a coupon code — valid or expired — returns **500 Internal Server
-> Error**. Coupons worked in the old PHP system.
-
-Failing tests: `tests/test_03_coupons.py`
-
 ### BUG-104 — Order totals off by a few cents (P2)
 
 > Finance can't reconcile yesterday's ledger. Orders containing the
@@ -71,14 +88,6 @@ Failing tests: `tests/test_03_coupons.py`
 > their line items — one cent short per unit. Small per order, but it adds up.
 
 Failing tests: `tests/test_02_order_totals.py`
-
-### BUG-105 — Flash-sale item oversold, stock went negative (P0)
-
-> During the deskmat flash sale we had 3 units in stock but confirmed **5
-> orders**, and the inventory dashboard showed negative stock. Only happens
-> under load — single requests behave correctly.
-
-Failing test: `tests/test_04_inventory.py::test_concurrent_orders_do_not_oversell`
 
 ---
 
