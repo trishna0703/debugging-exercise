@@ -1,0 +1,20 @@
+{
+  "name": "shoplite-debugging-exercise",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Node.js debugging exercise built around a small order service",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:products": "node --test tests/products.test.js",
+    "test:coupons": "node --test tests/coupons.test.js",
+    "test:inventory": "node --test tests/inventory.test.js",
+    "test:validation": "node --test tests/validation.test.js",
+    "test:totals": "node --test tests/totals.test.js",
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  }
+}

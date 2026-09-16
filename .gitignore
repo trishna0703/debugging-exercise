@@ -1,3 +1,9 @@
+node_modules/
+.env
+npm-debug.log*
+.DS_Store
+
+# Leftovers from running the Python variant in the same checkout.
 .venv/
 __pycache__/
 *.pyc
