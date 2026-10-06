@@ -169,4 +169,18 @@ export class Store {
   close() {
     this.#database.close();
   }
+
+  query(sql) {
+    return this.#database.prepare(sql).all();
+  }
+
+  setStock(id, stock) {
+    this.#database
+      .prepare("UPDATE products SET stock = ? WHERE id = ?")
+      .run(stock, id);
+  }
+
+  deleteProduct(id) {
+    this.#database.prepare("DELETE FROM products WHERE id = ?").run(id);
+  }
 }
