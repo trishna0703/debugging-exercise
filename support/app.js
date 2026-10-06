@@ -1,14 +1,13 @@
-import { createShopliteServer } from "../src/api/server.js";
+import { once } from "node:events";
+
+import { createShopliteApp } from "../src/api/server.js";
 import { Store } from "../src/store/store.js";
 
 export async function createTestApp(t) {
   const store = new Store(":memory:");
-  const server = createShopliteServer(store);
-
-  await new Promise((resolve, reject) => {
-    server.once("error", reject);
-    server.listen(0, "127.0.0.1", resolve);
-  });
+  const app = createShopliteApp(store);
+  const server = app.listen(0, "127.0.0.1");
+  await once(server, "listening");
 
   t.after(async () => {
     await new Promise((resolve, reject) => {

@@ -16,5 +16,8 @@
     "test:totals": "node --test tests/totals.test.js",
     "start": "node src/index.js",
     "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
