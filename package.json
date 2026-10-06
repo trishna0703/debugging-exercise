@@ -5,7 +5,7 @@
   "type": "module",
   "description": "A Node.js debugging exercise built around a small order service",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "test": "node --test",

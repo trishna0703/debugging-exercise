@@ -2,7 +2,7 @@ import { createShopliteServer } from "../src/api/server.js";
 import { Store } from "../src/store/store.js";
 
 export async function createTestApp(t) {
-  const store = new Store();
+  const store = new Store(":memory:");
   const server = createShopliteServer(store);
 
   await new Promise((resolve, reject) => {
@@ -14,6 +14,7 @@ export async function createTestApp(t) {
     await new Promise((resolve, reject) => {
       server.close((error) => (error ? reject(error) : resolve()));
     });
+    store.close();
   });
 
   const address = server.address();

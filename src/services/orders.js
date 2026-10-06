@@ -32,10 +32,6 @@ export async function createOrder(store, request) {
 
   await chargePayment(totalCents);
 
-  for (const reservation of reserved) {
-    reservation.product.stock -= reservation.quantity;
-  }
-
   return store.saveOrder({
     id: 0,
     total_cents: totalCents,

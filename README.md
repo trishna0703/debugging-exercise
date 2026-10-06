@@ -1,7 +1,7 @@
 # Shoplite Order Service — Debugging Exercise
 
 You've joined the team that owns **Shoplite**, a small e-commerce order service
-(Node.js, `node:http`, in-memory store). Overnight, support escalated several
+(Node.js, `node:http`, SQLite). Overnight, support escalated several
 customer complaints. Your job: **investigate and fix as many of the bug tickets
 below as you can.**
 
@@ -11,11 +11,11 @@ explain the root cause).
 
 ## Setup (2 minutes)
 
-Requires Node.js 20+. There are **no external dependencies** — nothing to
+Requires Node.js 24+. There are **no external dependencies** — nothing to
 download.
 
 ```bash
-node --version       # 20 or newer
+node --version       # 24 or newer
 
 # run the test suite — this is your bug reproduction
 npm test
@@ -98,7 +98,7 @@ src/
   index.js           main — starts the HTTP server
   api/               HTTP handlers, routing, error -> status mapping
   errors.js          error types the API maps onto status codes
-  store/             in-memory data layer + seed data
+  store/             SQLite schema, data access and seed data
   services/          checkout, coupons, validation and payment logic
 tests/
   *.test.js          one file per ticket — do not modify
