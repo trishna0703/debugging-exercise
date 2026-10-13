@@ -6,8 +6,10 @@ import {
   OutOfStockError,
 } from "../errors.js";
 import { Store } from "../store/store.js";
+import { deleteProduct, restock } from "./admin.js";
 import { placeOrder } from "./orders.js";
 import { listProducts } from "./products.js";
+import { searchProducts } from "./search.js";
 
 function requestUrl(request) {
   return new URL(request.originalUrl, "http://localhost");
@@ -47,9 +49,21 @@ export function createShopliteApp(store = new Store()) {
     response.status(200).json(listProducts(store, requestUrl(request)));
   });
 
+  app.get("/products/search", (request, response) => {
+    response.status(200).json(searchProducts(store, requestUrl(request)));
+  });
+
   app.post("/orders", async (request, response) => {
     const order = await placeOrder(store, request.body);
     response.status(201).json(order);
+  });
+
+  app.post("/admin/restock", (request, response) => {
+    response.status(200).json(restock(store, request.body));
+  });
+
+  app.delete("/admin/products/:id", (request, response) => {
+    response.status(200).json(deleteProduct(store, request.params.id));
   });
 
   app.use((request, response) => {
